@@ -21,16 +21,19 @@ function love.update(dt)
 
 		grid[xSquare][ySquare] = 0
 	end
+
+	-- When r is pressed, it resets the array to be 1s again
+	if love.keyboard.isDown("r") then
+		for x = 0, 24, 1 do
+			grid[x] = {}
+			for y = 0, 18, 1 do
+				grid[x][y] = 1
+			end
+		end
+	end
 end
 
 function love.draw()
-	-- love.graphics.setColor(255, 255, 255)
-	-- for x = 0, 24, 1 do
-	-- 	for y = 0, 18, 1 do
-	-- 		love.graphics.draw(oneBit, x * 32, y * 32)
-	-- 	end
-	-- end
-
 	for x = 0, 24, 1 do
 		for y = 0, 18, 1 do
 			if grid[x][y] == 1 then
@@ -38,12 +41,9 @@ function love.draw()
 			elseif grid[x][y] == 0 then
 				love.graphics.setColor(0, 0, 0)
 				love.graphics.rectangle("fill", x * 32, y * 32, 32 , 32)
+				-- Needed to change the color back after drawing
+				love.graphics.setColor(255, 255, 255)
 			end
 		end
 	end
-
-
-	love.graphics.setColor(255, 255, 255)
-	love.graphics.print(xSquare, 50, 50)
-	love.graphics.print(ySquare, 50, 60)
 end
