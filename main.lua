@@ -8,7 +8,7 @@ grid = {}
 
 function love.load()
 	oneBit = love.graphics.newImage("32x32.png")
-	player.img = love.graphics.newImage("blue.png")
+	player.img = love.graphics.newImage("person.png")
 	
 	testx=15
 	testy=415
