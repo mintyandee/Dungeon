@@ -47,3 +47,10 @@ function love.draw()
 		end
 	end
 end
+
+function love.keypressed(k)
+	--update later include save
+   if k == 'escape' then
+      love.event.quit()
+   end
+end
