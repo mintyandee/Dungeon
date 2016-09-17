@@ -1,7 +1,4 @@
-
-local ser = require 'ser'
-love.window.setTitle( "Dungeon")
-love.window.setMode(800, 600)
+love.window.setMode(768, 576)
 platform = {}
 player = {}
 grid = {}
@@ -14,18 +11,13 @@ function love.load()
 	testy=415
 	pieces = {}
 	
- 	if love.filesystem.exists( 'grid.lua' ) then
-        chunk = love.filesystem.load( 'grid.lua' )
-        grid = chunk()
-
-    else
-		for x = 0, 24, 1 do
-			grid[x] = {}
-			for y = 0, 18, 1 do
-				grid[x][y] = 1
-			end
+	for x = 0, 24, 1 do
+		grid[x] = {}
+		for y = 0, 18, 1 do
+			grid[x][y] = 1
 		end
 	end
+	
 	pieces[0] = love.graphics.newImage("1.png")
 	pieces[1] = love.graphics.newImage("2.png")
 	pieces[2] = love.graphics.newImage("3.png")
@@ -126,15 +118,4 @@ function love.draw()
 	--player for testing
 	love.graphics.draw(player.img, player.x, player.y, 0, 1, 1, 0, 32)
 	
-end
-function love.keypressed(k)
-	--update later include save
-   if k == 'escape' then
-     --table.save(grid, grid.txt) 
-
-     save =ser(grid)
-     love.filesystem.write( 'grid.lua', save )
-
-      love.event.quit()
-   end
 end
