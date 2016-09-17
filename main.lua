@@ -49,7 +49,7 @@ function camera:setScale(sx, sy)
 end
 function love.load()
 	oneBit = love.graphics.newImage("32x32.png")
-	player.img = love.graphics.newImage("blue.png")
+	player.img = love.graphics.newImage("person.png")
 	
 	testx=15
 	testy=415
@@ -82,7 +82,7 @@ end
 function love.update(dt)
 	if love.mouse.isDown(1) then
 		local xMouse, yMouse = love.mouse.getPosition()
-		xSquare = mvath.floor(xMouse / 32)
+		xSquare = math.floor(xMouse / 32)
 		ySquare = math.floor(yMouse / 32)
 
 		grid[xSquare][ySquare] = 0
