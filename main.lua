@@ -95,23 +95,23 @@ function love.draw()
 		end
 	end
 
-	if(not (love.keyboard.isDown('d', 'a'))) then 
+	if(not (love.keyboard.isDown('q', 'e'))) then 
 		buttonHeld = 0
 	end
 
-	love.graphics.print("Choose your piece", testx, testy, 0, 2, 2)
+	love.graphics.print("Use 'q' and 'e' to choose your piece", testx, testy, 0, 2, 2)
 	love.graphics.rectangle("line", 10, 400, 420, 160)
-	love.graphics.setColor(255,255,255)
-	love.graphics.draw(pieces[pieceC], 300,420)
-	if(love.keyboard.isDown("d") and buttonHeld ==0) then
+	love.graphics.setColor(255, 255, 255)
+	love.graphics.draw(pieces[pieceC], 300, 420)
+	if(love.keyboard.isDown("d") and buttonHeld == 0) then
 		if(pieceC+1 < pieceCount) then
-			pieceC=pieceC+1
-			buttonHeld=1
+			pieceC = pieceC + 1
+			buttonHeld = 1
 		end
-	elseif(love.keyboard.isDown("a") and buttonHeld ==0) then
+	elseif(love.keyboard.isDown("q") and buttonHeld == 0) then
 		if(pieceC-1 >= 0) then
-			pieceC=pieceC-1
-			buttonHeld=1
+			pieceC = pieceC - 1
+			buttonHeld = 1
 		end
 	end	
 
