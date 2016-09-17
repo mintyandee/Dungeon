@@ -1,6 +1,7 @@
 local ser = require 'ser'
 
-love.window.setMode(768, 576)
+love.window.setTitle( "Dungeon")
+love.window.setMode(800, 600)
 grid = {}
 function love.load()
 	oneBit = love.graphics.newImage("32x32.png")
