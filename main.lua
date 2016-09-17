@@ -1,15 +1,21 @@
+local ser = require 'ser'
+
 love.window.setMode(768, 576)
+grid = {}
 function love.load()
 	oneBit = love.graphics.newImage("32x32.png")
+ 	if love.filesystem.exists( 'grid.lua' ) then
+        chunk = love.filesystem.load( 'grid.lua' )
+        grid = chunk()
 
-	grid = {}
-	for x = 0, 24, 1 do
-		grid[x] = {}
-		for y = 0, 18, 1 do
-			grid[x][y] = 1
+    else
+		for x = 0, 24, 1 do
+			grid[x] = {}
+			for y = 0, 18, 1 do
+				grid[x][y] = 1
+			end
 		end
 	end
-	
 	xSquare, ySquare = 0, 0
 end
 
@@ -51,6 +57,11 @@ end
 function love.keypressed(k)
 	--update later include save
    if k == 'escape' then
+     --table.save(grid, grid.txt) 
+
+     save =ser(grid)
+     love.filesystem.write( 'grid.lua', save )
+
       love.event.quit()
    end
 end
