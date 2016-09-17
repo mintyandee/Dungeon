@@ -1,8 +1,12 @@
 love.window.setMode(768, 576)
+platform = {}
+player = {}
+grid = {}
+
 function love.load()
 	oneBit = love.graphics.newImage("32x32.png")
+	player.img = love.graphics.newImage("blue.png")
 
-	grid = {}
 	for x = 0, 24, 1 do
 		grid[x] = {}
 		for y = 0, 18, 1 do
@@ -11,6 +15,8 @@ function love.load()
 	end
 	
 	xSquare, ySquare = 0, 0
+
+	player.speed = 200 --sets player speed
 end
 
 function love.update(dt)
@@ -31,6 +37,35 @@ function love.update(dt)
 			end
 		end
 	end
+
+	--player for testing
+	if love.keyboard.isDown("p") then
+		player.x = love.graphics.getHeight() / 2
+		player.y = love.graphics.getHeight() / 2
+	end	
+
+	if love.keyboard.isDown('a') then
+		if grid[(math.floor(player.x / 32))][(math.floor(player.y / 32)) - 1] ==  1 then
+			player.x = player.x - (player.speed * dt)
+		end
+
+	elseif love.keyboard.isDown('d') then
+		if grid[(math.floor(player.x / 32) + 1)][(math.floor(player.y / 32)) - 1] ==  1 then
+			player.x = player.x + (player.speed * dt)
+		end
+
+	elseif love.keyboard.isDown('w') then
+		if grid[(math.floor(player.x / 32))][(math.floor(player.y / 32)) - 1] == 1 then
+			player.y = player.y - (player.speed * dt)
+		end
+
+	elseif love.keyboard.isDown('s') then
+		if grid[(math.floor(player.x / 32))][(math.floor(player.y / 32))] == 1 then
+			player.y = player.y + (player.speed * dt)
+		end
+	end
+
+	
 end
 
 function love.draw()
@@ -46,6 +81,8 @@ function love.draw()
 			end
 		end
 	end
+	--player for testing
+	love.graphics.draw(player.img, player.x, player.y, 0, 1, 1, 0, 32)
 end
 
 function love.keypressed(k)
