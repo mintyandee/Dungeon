@@ -84,3 +84,10 @@ function love.draw()
 	--player for testing
 	love.graphics.draw(player.img, player.x, player.y, 0, 1, 1, 0, 32)
 end
+
+function love.keypressed(k)
+	--update later include save
+   if k == 'escape' then
+      love.event.quit()
+   end
+end
