@@ -103,12 +103,12 @@ function love.draw()
 	love.graphics.rectangle("line", 10, 400, 420, 160)
 	love.graphics.setColor(255, 255, 255)
 	love.graphics.draw(pieces[pieceC], 300, 420)
-	if(love.keyboard.isDown("d") and buttonHeld == 0) then
+	if(love.keyboard.isDown("q") and buttonHeld == 0) then
 		if(pieceC+1 < pieceCount) then
 			pieceC = pieceC + 1
 			buttonHeld = 1
 		end
-	elseif(love.keyboard.isDown("q") and buttonHeld == 0) then
+	elseif(love.keyboard.isDown("e") and buttonHeld == 0) then
 		if(pieceC-1 >= 0) then
 			pieceC = pieceC - 1
 			buttonHeld = 1
