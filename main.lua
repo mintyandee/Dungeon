@@ -1,6 +1,6 @@
-
 local ser = require 'ser'
-love.window.setTitle( "Dungeon")
+
+love.window.setTitle("Dungeon")
 love.window.setMode(800, 760)
 platform = {}
 player = {}
@@ -10,14 +10,11 @@ function love.load()
 	oneBit = love.graphics.newImage("32x32.png")
 	player.img = love.graphics.newImage("person.png")
 	cobblestone = love.graphics.newImage("cobblestone.png")
-	testx=15
-	testy=415
 	pieces = {}
-	
- 	if love.filesystem.exists( 'grid.lua' ) then
-        chunk = love.filesystem.load( 'grid.lua' )
-        grid = chunk()
 
+	if love.filesystem.exists("grid.lua") then
+	chunck = love.filesystem.load("grid.lua")
+	grid = chunck()
     else
 		for x = 0, 24, 1 do
 			grid[x] = {}
@@ -26,12 +23,12 @@ function love.load()
 			end
 		end
 	end
+
 	pieces[0] = love.graphics.newImage("1.png")
 	pieces[1] = love.graphics.newImage("2.png")
 	pieces[2] = love.graphics.newImage("3.png")
 	pieceC = 1
 	pieceCount = 3
-
 
 	xSquare, ySquare = 0, 0
 	
@@ -39,7 +36,7 @@ function love.load()
 end
 
 function love.update(dt)
-	if love.mouse.isDown(1) then
+	if love.mouse.isDown("l") then
 		local xMouse, yMouse = love.mouse.getPosition()
 		xSquare = math.floor(xMouse / 32)
 		ySquare = math.floor(yMouse / 32)
@@ -87,9 +84,6 @@ function love.update(dt)
 end
 
 function love.draw()
-
-
-
 	for x = 0, 24, 1 do
 		for y = 0, 18, 1 do
 			if grid[x][y] == 1 then
@@ -126,14 +120,13 @@ function love.draw()
 	love.graphics.draw(player.img, player.x, player.y, 0, 1, 1, 0, 32)
 	
 end
+
 function love.keypressed(k)
 	--update later include save
    if k == 'escape' then
      --table.save(grid, grid.txt) 
-
      save =ser(grid)
-     love.filesystem.write( 'grid.lua', save )
-
-      love.event.quit()
+     love.filesystem.write("grid.lua", save )
+     love.event.quit()
    end
 end
