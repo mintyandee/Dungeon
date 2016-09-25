@@ -5,12 +5,38 @@ platform = {}
 player = {}
 grid = {}
 
+
+
+mob = {}
+mob.x = 0
+mob.y = 0
+mob.move = 1
+
 camera = {}
 camera.x = 0
 camera.y = 0
 camera.scaleX = 1
 camera.scaleY = 1
 camera.rotation = 0
+
+
+function mob:place(dx, dy)
+	self.x = dx
+	self.y = dy
+end
+
+function mob:move(dx, dy)
+	self.x = self.x + (dy or 0)
+	self.y = self.y + (dy or 0)
+end
+
+function mob:path(cond)
+	if (cond == 0) then 
+		mob.move = false
+	else
+		mob.move = true
+	end
+end		
 
 function camera:set()
   love.graphics.push()
@@ -52,6 +78,14 @@ function camera:mousePosition()
   return love.mouse.getX() * self.scaleX + self.x, love.mouse.getY() * self.scaleY + self.y
 end
 
+function love.wheelmoved(x, y)
+    if y < 0 then
+       camera:scale(1.02)
+    elseif y > 0 then
+       camera:scale(.98)
+    end
+end
+
 function love.load()
 	oneBit = love.graphics.newImage("32x32.png")
 	player.img = love.graphics.newImage("blue.png")
@@ -83,6 +117,8 @@ function love.load()
 	
 	player.speed = 200 --sets player speed
 end
+
+
 
 function love.update(dt)
 	if love.mouse.isDown(1) then
@@ -130,35 +166,27 @@ function love.update(dt)
 		end
 	end
 
-	if(love.keyboard.isDown('k') and buttonHeld ==0  ) then 
-		buttonHeld=1
-		camera:scale(1.01)
-	end	
 
-	if(love.keyboard.isDown('l') and buttonHeld ==0  ) then 
-		buttonHeld=1
-		camera:scale(.99)
-	end	
 
-	if( not (love.keyboard.isDown('k','right','left','down','up'))) then
+	if( not (love.keyboard.isDown('right','left','down','up'))) then
 		buttonHeld = 0
 	end	
 
 	if(love.keyboard.isDown('right') and buttonHeld==0 ) then
- 		camera.x= camera.x-30
+ 		camera.x= camera.x+30
  		buttonHeld=1
 	end	
 	if(love.keyboard.isDown('left') and buttonHeld==0) then
- 		camera.x= camera.x+30
+ 		camera.x= camera.x-30
  		buttonHeld=1
 	end	
 
 	if(love.keyboard.isDown('up') and buttonHeld==0) then
- 		camera.y= camera.y+30
+ 		camera.y= camera.y-30
  		buttonHeld=1
 	end	
 	if(love.keyboard.isDown('down') and buttonHeld==0) then
- 		camera.y= camera.y-30
+ 		camera.y= camera.y+30
  		buttonHeld=1
 	end	
 end
