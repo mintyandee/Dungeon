@@ -13,8 +13,8 @@ function love.load()
 	pieces = {}
 
 	if love.filesystem.exists("grid.lua") then
-	chunck = love.filesystem.load("grid.lua")
-	grid = chunck()
+		chunck = love.filesystem.load("grid.lua")
+		grid = chunck()
     else
 		for x = 0, 24, 1 do
 			grid[x] = {}
