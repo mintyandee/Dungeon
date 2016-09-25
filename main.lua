@@ -9,7 +9,7 @@ grid = {}
 function love.load()
 	oneBit = love.graphics.newImage("32x32.png")
 	player.img = love.graphics.newImage("person.png")
-	
+	cobblestone = love.graphics.newImage("cobblestone.png")
 	testx=15
 	testy=415
 	pieces = {}
@@ -95,8 +95,8 @@ function love.draw()
 			if grid[x][y] == 1 then
 				love.graphics.draw(oneBit, x * 32, y * 32)
 			elseif grid[x][y] == 0 then
-				love.graphics.setColor(0, 0, 0)
-				love.graphics.rectangle("fill", x * 32, y * 32, 32 , 32)
+				--love.graphics.setColor(0, 0, 0)
+				love.graphics.draw(cobblestone, x * 32, y * 32)
 				-- Needed to change the color back after drawing
 				love.graphics.setColor(255, 255, 255)
 			end
