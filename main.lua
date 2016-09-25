@@ -47,9 +47,14 @@ function camera:setScale(sx, sy)
   self.scaleX = sx or self.scaleX
   self.scaleY = sy or self.scaleY
 end
+
+function camera:mousePosition()
+  return love.mouse.getX() * self.scaleX + self.x, love.mouse.getY() * self.scaleY + self.y
+end
+
 function love.load()
 	oneBit = love.graphics.newImage("32x32.png")
-	player.img = love.graphics.newImage("person.png")
+	player.img = love.graphics.newImage("blue.png")
 	
 	testx=15
 	testy=415
@@ -81,7 +86,7 @@ end
 
 function love.update(dt)
 	if love.mouse.isDown(1) then
-		local xMouse, yMouse = love.mouse.getPosition()
+		local xMouse, yMouse = camera:mousePosition()
 		xSquare = math.floor(xMouse / 32)
 		ySquare = math.floor(yMouse / 32)
 
