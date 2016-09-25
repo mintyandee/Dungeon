@@ -206,6 +206,9 @@ function love.draw()
   	-- draw stuff
   	camera:unset()
 
+  	love.graphics.setColor(0, 0, 0)
+  	love.graphics.rectangle("fill", 0, 608, 800, 184)
+  	love.graphics.setColor(255, 255, 255)
 	love.graphics.print("Use 'q' and 'e' to choose your piece", 200, 610, 0, 2, 2)
 	love.graphics.setColor(255, 255, 255)
 	love.graphics.draw(pieces[pieceC], 400, 640)
