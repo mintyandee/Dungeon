@@ -1,7 +1,7 @@
 
 local ser = require 'ser'
 love.window.setTitle( "Dungeon")
-love.window.setMode(800, 600)
+love.window.setMode(800, 760)
 platform = {}
 player = {}
 grid = {}
@@ -107,10 +107,9 @@ function love.draw()
 		buttonHeld = 0
 	end
 
-	love.graphics.print("Use 'q' and 'e' to choose your piece", testx, testy, 0, 2, 2)
-	love.graphics.rectangle("line", 10, 400, 420, 160)
+	love.graphics.print("Use 'q' and 'e' to choose your piece", 200, 610, 0, 2, 2)
 	love.graphics.setColor(255, 255, 255)
-	love.graphics.draw(pieces[pieceC], 300, 420)
+	love.graphics.draw(pieces[pieceC], 400, 640)
 	if(love.keyboard.isDown("q") and buttonHeld == 0) then
 		if(pieceC+1 < pieceCount) then
 			pieceC = pieceC + 1
